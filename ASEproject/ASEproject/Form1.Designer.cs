@@ -20,6 +20,7 @@
             base.Dispose(disposing);
         }
 
+
         #region Windows Form Designer generated code
 
         /// <summary>
@@ -28,51 +29,55 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.OpenBTN = new System.Windows.Forms.Button();
+            this.SaveBTN = new System.Windows.Forms.Button();
+            this.RunBTN = new System.Windows.Forms.Button();
+            this.SyntaxBTN = new System.Windows.Forms.Button();
             this.ProgramTB = new System.Windows.Forms.TextBox();
             this.CommandLineTB = new System.Windows.Forms.TextBox();
+            this.OutputPB = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.OutputPB)).BeginInit();
             this.SuspendLayout();
             // 
-            // button1
+            // OpenBTN
             // 
-            this.button1.Location = new System.Drawing.Point(12, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Open";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.OpenBTN.Location = new System.Drawing.Point(12, 12);
+            this.OpenBTN.Name = "OpenBTN";
+            this.OpenBTN.Size = new System.Drawing.Size(75, 23);
+            this.OpenBTN.TabIndex = 0;
+            this.OpenBTN.Text = "Open";
+            this.OpenBTN.UseVisualStyleBackColor = true;
+            this.OpenBTN.Click += new System.EventHandler(this.OpenBTN_Click);
             // 
-            // button2
+            // SaveBTN
             // 
-            this.button2.Location = new System.Drawing.Point(93, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Save";
-            this.button2.UseVisualStyleBackColor = true;
+            this.SaveBTN.Location = new System.Drawing.Point(93, 12);
+            this.SaveBTN.Name = "SaveBTN";
+            this.SaveBTN.Size = new System.Drawing.Size(75, 23);
+            this.SaveBTN.TabIndex = 1;
+            this.SaveBTN.Text = "Save";
+            this.SaveBTN.UseVisualStyleBackColor = true;
+            this.SaveBTN.Click += new System.EventHandler(this.SaveBTN_Click);
             // 
-            // button3
+            // RunBTN
             // 
-            this.button3.Location = new System.Drawing.Point(12, 338);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "Run";
-            this.button3.UseVisualStyleBackColor = true;
+            this.RunBTN.Location = new System.Drawing.Point(12, 338);
+            this.RunBTN.Name = "RunBTN";
+            this.RunBTN.Size = new System.Drawing.Size(75, 23);
+            this.RunBTN.TabIndex = 2;
+            this.RunBTN.Text = "Run";
+            this.RunBTN.UseVisualStyleBackColor = true;
+            this.RunBTN.Click += new System.EventHandler(this.RunBTN_Click);
             // 
-            // button4
+            // SyntaxBTN
             // 
-            this.button4.Location = new System.Drawing.Point(93, 338);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "Syntax";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.SyntaxBTN.Location = new System.Drawing.Point(93, 338);
+            this.SyntaxBTN.Name = "SyntaxBTN";
+            this.SyntaxBTN.Size = new System.Drawing.Size(75, 23);
+            this.SyntaxBTN.TabIndex = 3;
+            this.SyntaxBTN.Text = "Syntax";
+            this.SyntaxBTN.UseVisualStyleBackColor = true;
+            this.SyntaxBTN.Click += new System.EventHandler(this.SyntaxBTN_Click);
             // 
             // ProgramTB
             // 
@@ -89,19 +94,31 @@
             this.CommandLineTB.Size = new System.Drawing.Size(373, 20);
             this.CommandLineTB.TabIndex = 6;
             // 
+            // OutputPB
+            // 
+            this.OutputPB.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.OutputPB.Location = new System.Drawing.Point(416, 41);
+            this.OutputPB.Name = "OutputPB";
+            this.OutputPB.Size = new System.Drawing.Size(357, 265);
+            this.OutputPB.TabIndex = 7;
+            this.OutputPB.TabStop = false;
+            this.OutputPB.Paint += new System.Windows.Forms.PaintEventHandler(this.OutputPB_Paint);
+            // 
             // FormWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 374);
+            this.Controls.Add(this.OutputPB);
             this.Controls.Add(this.CommandLineTB);
             this.Controls.Add(this.ProgramTB);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.SyntaxBTN);
+            this.Controls.Add(this.RunBTN);
+            this.Controls.Add(this.SaveBTN);
+            this.Controls.Add(this.OpenBTN);
             this.Name = "FormWindow";
             this.Text = "ASE graphics project";
+            ((System.ComponentModel.ISupportInitialize)(this.OutputPB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -109,12 +126,13 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button OpenBTN;
+        private System.Windows.Forms.Button SaveBTN;
+        private System.Windows.Forms.Button RunBTN;
+        private System.Windows.Forms.Button SyntaxBTN;
         private System.Windows.Forms.TextBox ProgramTB;
         private System.Windows.Forms.TextBox CommandLineTB;
+        private System.Windows.Forms.PictureBox OutputPB;
     }
 }
 

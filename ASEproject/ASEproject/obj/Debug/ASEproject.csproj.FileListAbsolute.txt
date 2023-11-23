@@ -1,0 +1,10 @@
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.csproj.AssemblyReference.cache
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.FormWindow.resources
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.Properties.Resources.resources
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.csproj.GenerateResource.cache
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.csproj.CoreCompileInputs.cache
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\bin\Debug\ASEproject.exe.config
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\bin\Debug\ASEproject.exe
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\bin\Debug\ASEproject.pdb
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.exe
+C:\Users\jacob\OneDrive\Documents\source\repos\ASEproject\ASEproject\ASEproject\obj\Debug\ASEproject.pdb
