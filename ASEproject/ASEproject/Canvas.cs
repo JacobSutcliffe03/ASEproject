@@ -200,13 +200,21 @@ namespace ASEproject
             switch (colour)
             {
                 case "red":
-                    Pen.Color = Color.Red; break;
+                    Pen.Color = Color.Red;
+                    Brush = new SolidBrush(Color.Red);
+                    break;        
                 case "green":
-                    Pen.Color = Color.Green; break;
+                    Pen.Color = Color.Green;
+                    Brush = new SolidBrush(Color.Green);
+                    break;
                 case "blue":
-                    Pen.Color = Color.Blue; break;
+                    Pen.Color = Color.Blue;
+                    Brush = new SolidBrush(Color.Blue);
+                    break;
                 case "black" :
-                    Pen.Color = Color.Black;  break;
+                    Pen.Color = Color.Black;
+                    Brush = new SolidBrush(Color.Black);
+                    break;
                 default: 
                     Console.WriteLine("Invalid parameters"); break;
             }
@@ -240,11 +248,11 @@ namespace ASEproject
         {          
             if (fill == true)
             {
-                g.FillEllipse(Brush, xPos - radius, yPos - radius, radius + radius, radius + radius);
+                g.FillEllipse(Brush, xPos - radius, yPos - radius, radius*2, radius*2);
             }
             else
             {
-                g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius + radius, radius + radius);
+                g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius*2, radius*2);
             }
         }
 
