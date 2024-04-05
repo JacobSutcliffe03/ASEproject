@@ -1,6 +1,6 @@
 ﻿namespace ASEproject
 {
-    partial class FormWindow
+    partial class Form1
     {
         /// <summary>
         /// Required designer variable.

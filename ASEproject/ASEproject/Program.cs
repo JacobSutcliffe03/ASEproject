@@ -16,7 +16,7 @@ namespace ASEproject
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormWindow());
+            Application.Run(new Form1());
         }
     }
 }
