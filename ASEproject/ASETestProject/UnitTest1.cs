@@ -126,3 +126,19 @@ namespace aseTest
             var currentLocation = canvas.GetCurrentLocation();
             Assert.AreEqual(new Point(endX, endY), currentLocation, "Cursor should move to the specified location");
         }
+
+        /// <summary>
+        /// clear command test.
+        /// </summary>
+        [TestMethod]
+        public void Clear_Test()
+        {
+            Pen pen = new Pen(Color.Red, 1);
+            Canvas canvas = new Canvas(300, 300);
+            canvas.MoveTo(50, 100);
+            canvas.DrawTo(100, 150);
+            canvas.Clear();
+            // Checks if command history is empty.
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            Assert.IsTrue(executedCommands.Count == 0, "Canvas should have no executed commands after clearing");
+        }
