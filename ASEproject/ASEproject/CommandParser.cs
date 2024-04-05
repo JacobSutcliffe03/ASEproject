@@ -79,3 +79,9 @@ namespace ASEproject
 
             }
             //draws a triangle on the bitmap.
+
+            else if (elems[0] == "clear")
+            {
+                canvas.Clear();
+            }
+            //clears bitmap.
