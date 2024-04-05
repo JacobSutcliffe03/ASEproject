@@ -92,3 +92,21 @@ namespace aseTest
             List<string> executedCommands = canvas.GetExecutedCommands();
             Assert.IsTrue(executedCommands.Count > 0, "No commands were executed on run button click.");
         }
+
+        /// <summary>
+        /// Moveto command test.
+        /// </summary>
+        [TestMethod]
+        public void MoveTo_Test()
+        {
+            Pen pen = new Pen(Color.Red, 1);
+            Canvas canvas = new Canvas(350, 300);
+            int x = 50;
+            int y = 100;
+            string command = $"moveto {x} {y}";
+            CommandParser parser = new CommandParser(command, pen, canvas);
+            canvas.MoveTo(x, y);
+            Point currentLocation = canvas.GetCurrentLocation();
+            //Compare cursor position to moveto parameters given.
+            Assert.AreEqual(new Point(x, y), currentLocation, "Cursor should move to the specified location");
+        }
