@@ -215,3 +215,22 @@ namespace aseTest
             Assert.AreEqual(10, CommandParser.variables["x"], "Expected value.");
         }
 
+        /// <summary>
+        /// Expression test.
+        /// </summary>
+        [TestMethod]
+        public void Expression_Test()
+        {
+            Pen pen = new Pen(Color.Red, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command1 = "let count equals 5";
+            CommandParser parser1 = new CommandParser(command1, pen, canvas);
+            string command2 = "let size equals count * 10";
+            CommandParser parser2 = new CommandParser(command2, pen, canvas);
+            // Compare variables change/
+            Assert.IsTrue(CommandParser.variables.ContainsKey("size"), "Expected result.");
+            Assert.AreEqual(50, CommandParser.variables["size"], "Expected value");
+        }
+
+
+
