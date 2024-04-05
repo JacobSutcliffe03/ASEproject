@@ -104,3 +104,139 @@ namespace ASEproject
             }
 
         }
+
+        /// <summary>
+        /// Event handler for validating commands.
+        /// </summary>
+
+        private void SyntaxBTN_Click(object sender, EventArgs e)
+        {
+            string CL = CommandLineTB.Text; //code in command line
+            string ML = ProgramTB.Text; //code in program textbox
+            string[] codeList = { CL, ML }; //List of values from program TB and Commandline
+
+            StringBuilder validationResults = new StringBuilder(); // create a string builder for validation 
+            foreach (string code in codeList) //loop/step through commands through the commands
+            {
+                string[] elems = code.Split(' '); //split commands
+
+                if (elems.Length > 0) //null length check
+                {
+                    string command = elems[0];
+
+                    try
+                    {
+
+
+                        switch (command) //switch case for commands 
+                        {
+                            case "moveto":
+                                if (elems.Length == 3)
+                                {
+                                    if (int.TryParse(elems[1], out _) && int.TryParse(elems[2], out _)) //checks if the command is valid
+                                    {
+                                        validationResults.AppendLine("Valid command");
+                                    }
+                                    else
+                                    {
+                                        validationResults.AppendLine("Invalid parameter types for moveto");
+                                    }
+                                }
+                                else
+                                {
+                                    validationResults.AppendLine("Invalid parameters for moveto");
+                                }
+                                break;
+
+                            case "circle":
+                                if (elems.Length >= 2 && int.TryParse(elems[1], out _))
+                                {
+                                    validationResults.AppendLine("Valid command");
+                                }
+                                else
+                                {
+                                    validationResults.AppendLine("Invalid parameters for circle");
+                                }
+                                break;
+
+                            case "rectangle":
+                                if (elems.Length == 3)
+                                {
+                                    if (int.TryParse(elems[1], out _) && int.TryParse(elems[2], out _))
+                                    {
+                                        validationResults.AppendLine("Valid command");
+                                    }
+                                    else
+                                    {
+                                        validationResults.AppendLine("Invalid parameters for rectangle");
+                                    }
+                                }
+
+
+                                break;
+
+                            case "triangle":
+                                if (elems.Length == 2)
+                                {
+                                    if (int.TryParse(elems[1], out _))
+                                    {
+                                        validationResults.AppendLine("Valid command");
+                                    }
+                                    else
+                                    {
+                                        validationResults.AppendLine("Invalid parameters for triangle");
+                                    }
+                                }
+
+                                break;
+
+
+                            case "clear":
+
+                                break;
+
+                            case "reset":
+
+                                break;
+
+                            case "drawto":
+
+                                if (elems.Length == 3)
+                                {
+                                    if (int.TryParse(elems[1], out _) && int.TryParse(elems[2], out _)) //checking parameters
+                                    {
+                                        validationResults.AppendLine("Valid command");
+                                    }
+                                    else
+                                    {
+                                        validationResults.AppendLine("Invalid parameter types for drawto");
+                                    }
+                                }
+                                else
+                                {
+                                    validationResults.AppendLine("Incalid parameters for drawto");
+                                }
+                                break;
+
+
+                            default:
+                                validationResults.AppendLine(" ");
+                                break;
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        validationResults.AppendLine($"Error: {ex.Message}");
+                    }
+                }
+                else
+                {
+                    validationResults.AppendLine("Invalid command");
+                }
+            }
+
+            MessageBox.Show(validationResults.ToString(), "Syntax Check");
+
+        }
+    }
+}
