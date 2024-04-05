@@ -52,3 +52,24 @@ namespace aseTest
             }
             Assert.IsTrue(executedCommands.Any(command => command.Contains("Rectangle")));
         }
+
+        /// <summary>
+        /// Triangle command tests.
+        /// </summary>
+        [TestMethod]
+        public void Triangle_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command = "triangle 30";
+            // Executes the triangle command
+            CommandParser parser = new CommandParser(command, pen, canvas);
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            //Check command has been run and assert True if it has.
+            Console.WriteLine("Executed Commands:");
+            foreach (string executedCommand in executedCommands)
+            {
+                Console.WriteLine(executedCommand);
+            }
+            Assert.IsTrue(executedCommands.Any(command => command.Contains("Triangle")));
+        }
