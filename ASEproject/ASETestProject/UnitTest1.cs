@@ -172,3 +172,24 @@ namespace aseTest
             Color updatedPenColor = pen.Color;
             Assert.AreEqual(Color.Red, updatedPenColor, "Pen color changed.");
         }
+
+        /// <summary>
+        /// Loop/repeat command test
+        /// </summary>
+        [TestMethod]
+        public void Repeat_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command = "repeat 3 circle 30";
+            CommandParser parser = new CommandParser(command, pen, canvas);
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            Console.WriteLine("Executed Commands:");
+            foreach (string executedCommand in executedCommands)
+            {
+                Console.WriteLine(executedCommand);
+            }
+            // Check number of times command is run.
+            Assert.AreEqual(3, executedCommands.Count, "Expected 3 circles to be drawn.");
+            Assert.IsTrue(executedCommands.TrueForAll(command => command.Contains("Circle")), "Expected Result.");
+        }
