@@ -119,3 +119,10 @@ namespace ASEproject
                     Console.WriteLine($"Error evaluating expression for variable {name}");
                 }
             }
+
+            else if (elems[0] == "repeat")
+            {
+
+                LoopCommand(elems, pen, canvas);
+
+            }
