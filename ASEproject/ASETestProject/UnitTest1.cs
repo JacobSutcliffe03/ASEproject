@@ -142,3 +142,18 @@ namespace aseTest
             List<string> executedCommands = canvas.GetExecutedCommands();
             Assert.IsTrue(executedCommands.Count == 0, "Canvas should have no executed commands after clearing");
         }
+
+        /// <summary>
+        /// reset command test
+        /// </summary>
+        [TestMethod]
+        public void Reset_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            canvas.MoveTo(50, 100);
+            canvas.Reset();
+            // Check position of cursor returns to origin after being moved then reset.
+            Point currentLocation = canvas.GetCurrentLocation();
+            Assert.AreEqual(new Point(0, 0), currentLocation, "Cursor Reset");
+        }
