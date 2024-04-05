@@ -85,3 +85,9 @@ namespace ASEproject
                 canvas.Clear();
             }
             //clears bitmap.
+
+            else if (elems[0] == "reset")
+            {
+                canvas.Reset();
+            }
+            //resets the cursor to origin.
