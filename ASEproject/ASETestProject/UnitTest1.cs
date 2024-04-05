@@ -73,3 +73,22 @@ namespace aseTest
             }
             Assert.IsTrue(executedCommands.Any(command => command.Contains("Triangle")));
         }
+
+        /// <summary>
+        /// runBTN test.
+        /// </summary>
+        [TestMethod]
+        public void RunButton_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command = "drawto 30 30" + Environment.NewLine + "rectangle 20 20";
+            string[] commands = command.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries);
+            foreach (var cmd in commands)
+            {
+                CommandParser parser = new CommandParser(cmd, pen, canvas);
+            }
+            //Check command has been run and assert True if it has.
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            Assert.IsTrue(executedCommands.Count > 0, "No commands were executed on run button click.");
+        }
