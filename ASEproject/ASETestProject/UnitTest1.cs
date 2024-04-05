@@ -191,5 +191,27 @@ namespace aseTest
             }
             // Check number of times command is run.
             Assert.AreEqual(3, executedCommands.Count, "Expected 3 circles to be drawn.");
-            Assert.IsTrue(executedCommands.TrueForAll(command => command.Contains("Circle")), "Expected Result.");
+            Assert.IsTrue(executedCommands.TrueForAll(command => command.Contains("Circle")), "Expected result.");
         }
+
+        /// <summary>
+        /// Variable assignment test.
+        /// </summary>
+        [TestMethod]
+        public void VariableAssignment_Test()
+        {
+            Pen pen = new Pen(Color.Red, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command = "let x equals 10";
+            CommandParser parser = new CommandParser(command, pen, canvas);
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            Console.WriteLine("Executed Commands:");
+            foreach (string executedCommand in executedCommands)
+            {
+                Console.WriteLine(executedCommand);
+            }
+            // Check variable dictionary.
+            Assert.IsTrue(CommandParser.variables.ContainsKey("x"), "Expected result.");
+            Assert.AreEqual(10, CommandParser.variables["x"], "Expected value.");
+        }
+
