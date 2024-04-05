@@ -220,3 +220,50 @@ namespace ASEproject
                     // syntaxes for incorrect commands
                 }
             }
+            /// <summary>
+            /// Checks if a element in command is a variable or a value.
+            /// </summary>
+            /// <param name="variableOrValue">The input string representing either a variable name or a numerical value.</param>
+            /// <returns>The value corresponding to the variable name or the parsed numerical value.</returns>
+            private int ifVariableOrValue(string variableOrValue)
+            {
+                if (variables.ContainsKey(variableOrValue))
+                {
+                    return variables[variableOrValue];
+                }
+                else if (Int32.TryParse(variableOrValue, out int value))
+                {
+                    return value;
+                }
+                else
+                {
+                    Console.WriteLine($"Invalid Parameters: {variableOrValue}");
+                    return 0;
+                }
+            }
+
+
+            /// <summary>
+            /// Handles the let command for variable assignment, updating the variables dictionary - let x equals 10
+            /// </summary>
+            /// <param name="elems">The array of command parts.</param>
+            private void VariableAssignment(string[] elems)
+            {
+
+                if (elems.Length == 4 && elems[2].ToLower() == "equals")
+                {
+                    string variableName = elems[1];  // Do not convert to lowercase
+                    int value = Int32.Parse(elems[3]);
+
+                    // Updatse the variables dictionary with the assigned value that was inpputed in
+                    if (variables.ContainsKey(variableName))
+                    {
+                        variables[variableName] = value;
+                    }
+                    else
+                    {
+                        variables.Add(variableName, value);
+                    }
+
+                }
+            }
