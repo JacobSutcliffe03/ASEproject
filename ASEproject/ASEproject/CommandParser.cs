@@ -91,3 +91,11 @@ namespace ASEproject
                 canvas.Reset();
             }
             //resets the cursor to origin.
+
+            else if (elems[0] == "drawto")
+            {
+                int x = Int32.Parse(elems[1]);
+                int y = Int32.Parse(elems[2]);
+                canvas.DrawTo(x, y);
+            }
+            //draws a line to a point.
