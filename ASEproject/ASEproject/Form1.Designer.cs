@@ -102,7 +102,7 @@
             this.OutputPB.Size = new System.Drawing.Size(357, 265);
             this.OutputPB.TabIndex = 7;
             this.OutputPB.TabStop = false;
-            this.OutputPB.Paint += new System.Windows.Forms.PaintEventHandler(this.OutputPB_Paint);
+            ///this.OutputPB.Paint += new System.Windows.Forms.PaintEventHandler(this.OutputPB_Paint);
             // 
             // FormWindow
             // 
@@ -135,4 +135,3 @@
         private System.Windows.Forms.PictureBox OutputPB;
     }
 }
-
