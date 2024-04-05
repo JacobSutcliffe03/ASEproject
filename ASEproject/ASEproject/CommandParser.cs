@@ -29,3 +29,12 @@ namespace ASEproject
             Console.WriteLine("command: " + command);
             string[] elems = command.Split(' ');
             lastCommand = command;
+
+            // moves the cursor to the selected location.
+            if (elems[0] == "moveto")
+            {
+                int x = Int32.Parse(elems[1]);
+                int y = Int32.Parse(elems[2]);
+                canvas.MoveTo(x, y);
+
+            }
