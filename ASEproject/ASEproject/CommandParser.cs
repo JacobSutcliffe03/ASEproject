@@ -297,3 +297,38 @@ namespace ASEproject
                     }
 
                 }
+
+            }
+            /// <summary>
+            /// This will try to evaluate the specified numerical expression and retrieves the result for it
+            /// </summary>
+            /// <param name="expression">The mathematical expression to be evaluated.</param>
+            /// <param name="result">The result of the evaluation if successful, otherwise 0.</param>
+            /// <returns>True if the expression is successfully evaluated, false otherwise.</returns>
+            private bool TryEvaluateExpression(string expression, out int result)
+            {
+                result = 0;
+
+                foreach (var variable in variables)
+                {
+                    expression = expression.Replace(variable.Key, variable.Value.ToString());
+                }
+
+
+                expression = expression.Replace("*", " * ");
+
+                DataTable dt = new DataTable();
+
+                try
+                {
+                    result = Convert.ToInt32(dt.Compute(expression, ""));
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+
+
+
+            }
