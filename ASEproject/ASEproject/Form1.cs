@@ -63,3 +63,22 @@ namespace ASEproject
                 }
             }
         }
+
+        /// <summary>
+        /// load program from a text file.
+        /// </summary>
+        public void OpenBTN_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.Filter = "Text Files|*.txt|All Files|*.*";  // Filter for text files.
+                if (openFileDialog.ShowDialog() == DialogResult.OK) // Opens file dialog to select a file.
+                {
+                    string selectedFilePath = openFileDialog.FileName; // Retrieves the selected file path.
+                    string commandsToLoad = System.IO.File.ReadAllText(selectedFilePath); // Reads the content of the selected files.
+                    ProgramTB.Text = commandsToLoad; // Populates the multi line textbox with the loaded commands
+
+                }
+            }
+
+        }
