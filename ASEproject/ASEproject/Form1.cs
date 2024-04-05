@@ -82,3 +82,25 @@ namespace ASEproject
             }
 
         }
+
+        /// <summary>
+        /// Event handler for executing the commands that are entered.
+        /// </summary>
+        private void RunBTN_Click(object sender, EventArgs e)
+        {
+            command = CommandLineTB.Text; // Gets the command from a single-line text box.
+
+            CommandParser cp = new CommandParser(command, pen, canvas); //processes the command.
+
+            Bitmap myBitmap = canvas.GetBitmap();
+            OutputPB.Image = myBitmap; // Updates bitmap.
+
+            command = ProgramTB.Text;
+            string[] commands = command.Split(new[] { Environment.NewLine }, StringSplitOptions.RemoveEmptyEntries); // Gets commands from program TB.
+
+            foreach (var cmd in commands) // loop through commands
+            {
+                CommandParser commandprocessor = new CommandParser(cmd, pen, canvas); // Processes commands.
+            }
+
+        }
