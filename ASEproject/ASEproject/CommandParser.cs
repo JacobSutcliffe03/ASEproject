@@ -38,3 +38,44 @@ namespace ASEproject
                 canvas.MoveTo(x, y);
 
             }
+            else if (elems[0] == "circle")
+            {
+                if (elems.Length == 2)
+                {
+                    int radius = ifVariableOrValue(elems[1]);
+                    Shape circle = new Circle(pen.Color, canvas.GetCurrentLocation().X, canvas.GetCurrentLocation().Y, radius);
+                    canvas.DrawShape(circle);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid 'circle' command syntax.");
+                }
+
+            }
+
+
+            // draws a circle on the bitmap.
+
+            else if (elems[0] == "rectangle")
+            {
+                if (elems.Length == 3)
+                {
+                    int width = ifVariableOrValue(elems[1]);
+                    int height = ifVariableOrValue(elems[2]);
+                    Shape rectangle = new Rectangle(pen.Color, 15, 15, width, height);
+                    canvas.DrawShape(rectangle);
+                }
+                else
+                {
+                    Console.WriteLine("Invalid 'rectangle' command syntax.");
+                }
+            }
+            // draws a rectangle on the bitmap.
+            else if (elems[0] == "triangle")
+            {
+                int sideLength = Int32.Parse(elems[1]);
+                Shape triangle = new Triangle(pen.Color, 15, 15, sideLength);
+                canvas.DrawShape(triangle);
+
+            }
+            //draws a triangle on the bitmap.
