@@ -1,289 +1,112 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ASEproject
 {
     /// <summary>
-    /// Holds attributes and methods for manipulating graphics object.
+    /// canvas used for drawing shapes on bitmap.
     /// </summary>
-    class Canvas
+    public class Canvas
     {
-        Graphics g;
-        Pen Pen;
-        Brush Brush;
+        private List<string> executedCommands = new List<string>();
+        private Graphics g;
+        public Point p;
+        private Bitmap myBitmap;
+        public Point currentLocation;
+        private Color currentPenColor = Color.Black;
         /// <summary>
-        /// Current pen position.
+        /// Handles drawing shapes.
         /// </summary>
-        int xPos, yPos;
-        /// <summary>
-        /// flag for changing fill mode.
-        /// </summary>
-        bool fill = false;
-
-        /// <summary>
-        /// Constructor for canvas object.
-        /// </summary>
-        /// <param name="g"></param>
-        public Canvas(Graphics g) 
+        /// <param name="shape">The shape class being referenced.</param>
+        public void DrawShape(Shape shape)
         {
-            this.g = g;
-            xPos = yPos = 0;
-            Pen = new Pen(Color.Black, 1);
-            Brush = new SolidBrush(Color.Black);
+            shape.DrawShape(g, p);
+            executedCommands.Add(shape.ToString());
+            // Storing the command for now, assuming ToString() provides command details
         }
-
         /// <summary>
-        /// Formats, parses, matches then runs given string.
+        /// Retrives the executed commands
         /// </summary>
-        /// <param name="line">Commands to be parsed</param>
-        public void ParseCommand(String line)
+        /// <returns></returns>
+        public List<string> GetExecutedCommands()
         {
-            //Formatting strings.
-            line = line.ToLower().Trim();
-            String[] split = line.Split(' ');
-            String command = split[0];
-            String[] param = split[1].Split(',');
-
-            //Check for commands with non-integer parameters.
-            if (command == "fill")
-            {
-                FillShapes(param[0]);
-            }
-            if (command == "colour")
-            {
-                changeColour(param[0]);
-            }
-            if (command == "clear") 
-            {
-                ClearPB();
-            }
-
-            //Parse parameters.
-            var parameters = new int[param.Length];
-            try 
-            { 
-                for (int i = 0; i < param.Length; i++)
-                {
-                    parameters[i] = int.Parse(param[i]);
-                }
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
-
-            //Matching commands and running methods.
-            switch (command)
-            {
-                case null:
-                    param = null;
-                    break;
-                case "moveto":
-                    try
-                    { 
-                        MoveTo(parameters[0], parameters[1]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                case "drawto":
-                    try
-                    {
-                        DrawLine(parameters[0], parameters[1]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                case "triangle":
-                    try
-                    {
-                        DrawTriangle(parameters[0], parameters[1], parameters[2], parameters[3], parameters[4], parameters[5]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                case "rectangle":
-                    try
-                    {
-                        DrawRectangle(parameters[0], parameters[1]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                case "circle":
-                    try
-                    {
-                        DrawCircle(xPos, yPos, parameters[0]);
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                case "clear":
-                    try
-                    {
-                        ClearPB();
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                    break;
-                default:
-                    param = null; 
-                    break;
-            }
-
+            return executedCommands;
         }
-
         /// <summary>
-        /// Moves the pens position without drawing.
+        /// Moves the drawing position to a specified location.
         /// </summary>
-        /// <param name="toX">int Move to pen to x coordinate.</param>
-        /// <param name="toY">int Move to pen to y coordinate.</param>
-        public void MoveTo(int toX, int toY)
+        /// <param name="x">The X-coordinate of the new position.</param>
+        /// <param name="y">The Y-coordinate of the new position.</param>
+        public void MoveTo(int x, int y)
         {
-            xPos = toX;
-            yPos = toY;
+            p = new Point(x, y);
+            currentLocation = p;
         }
-
         /// <summary>
-        /// Draws a line between current pen position and (toX, toY).
+        /// Clears the canvas/Picture Box.
         /// </summary>
-        /// <param name="toX">int Draws to x coordinate.</param>
-        /// <param name="toY">int Draws to y coordinate.</param>
-        public void DrawLine(int toX, int toY) 
+        public void Clear()
         {
-            g.DrawLine(Pen, xPos, yPos, toX, toY);
-            xPos = toX;
-            yPos = toY;
+            myBitmap = new Bitmap(myBitmap.Width, myBitmap.Height);
+            g = Graphics.FromImage(myBitmap);
         }
-
         /// <summary>
-        /// Controls fill mode.
+        /// Set position to origin.
         /// </summary>
-        /// <param name="fillFlag">string if true then starts fill mode.</param>
-        public void FillShapes(string fillFlag) 
+        public void Reset()
         {
-            if (fillFlag == "true")
-            {
-                fill = true;
-            }
-            else
-            {
-                fill = false;
-            }
+            MoveTo(0, 0);
         }
 
         /// <summary>
-        /// Changes pen colour.
+        /// Draws a line from the current position to a point.
         /// </summary>
-        /// <param name="colour">string colour drawn by pen.</param>
-        public void changeColour(string colour)
+        /// <param name="x">X-coordinate of end point.</param>
+        /// <param name="y">Y-coordinate of end point.</param>
+        public void DrawTo(int x, int y)
         {
-            switch (colour)
-            {
-                case "red":
-                    Pen.Color = Color.Red;
-                    Brush = new SolidBrush(Color.Red);
-                    break;        
-                case "green":
-                    Pen.Color = Color.Green;
-                    Brush = new SolidBrush(Color.Green);
-                    break;
-                case "blue":
-                    Pen.Color = Color.Blue;
-                    Brush = new SolidBrush(Color.Blue);
-                    break;
-                case "black" :
-                    Pen.Color = Color.Black;
-                    Brush = new SolidBrush(Color.Black);
-                    break;
-                default: 
-                    Console.WriteLine("Invalid parameters"); break;
-            }
+            Pen pen = new Pen(currentPenColor, 5);
+            g.DrawLine(pen, p.X, p.Y, x, y);
+            p = new Point(x, y);
+            currentLocation = p;
         }
 
         /// <summary>
-        /// Draws a rectangle on graphics object.
+        /// Initializing canvas.
         /// </summary>
-        /// <param name="width">int</param>
-        /// <param name="height">int</param>
-        public void DrawRectangle(int width, int height)
-        {          
-            if (fill == true)
-            {
-                g.FillRectangle(Brush, xPos, yPos, width, height);
-            }
-            else
-            {
-                g.DrawRectangle(Pen, xPos, yPos, width, height);
-            }
-
-        }
-
-        /// <summary>
-        /// Draws a circle on graphics object.
-        /// </summary>
-        /// <param name="xPos">float Current pen x position.</param>
-        /// <param name="yPos">float Current pen y position.</param>
-        /// <param name="radius">float</param>
-        public void DrawCircle(float xPos, float yPos, float radius)
-        {          
-            if (fill == true)
-            {
-                g.FillEllipse(Brush, xPos - radius, yPos - radius, radius*2, radius*2);
-            }
-            else
-            {
-                g.DrawEllipse(Pen, xPos - radius, yPos - radius, radius*2, radius*2);
-            }
-        }
-
-        /// <summary>
-        /// Draws a triangle between three points.
-        /// </summary>
-        /// <param name="p1x">int</param>
-        /// <param name="p1y">int</param>
-        /// <param name="p2x">int</param>
-        /// <param name="p2y">int</param>
-        /// <param name="p3x">int</param>
-        /// <param name="p3y">int</param>
-        public void DrawTriangle(int p1x, int p1y, int p2x, int p2y, int p3x, int p3y)
+        /// <param name="width">The width of canvas.</param>
+        /// <param name="height">The height of canvas.</param>
+        public Canvas(int width, int height)
         {
-            if (fill == true)
-            {
-                g.FillPolygon(Brush, new Point[] { new Point(p1x, p1y), new Point(p2x, p2y), new Point(p3x, p3y) });
-            }
-            else
-            {
-                g.DrawPolygon(Pen, new Point[] { new Point(p1x, p1y), new Point(p2x, p2y), new Point(p3x, p3y) });
-            }
+            myBitmap = new Bitmap(width, height);
+            g = Graphics.FromImage(myBitmap);
+
+        }
+
+        public Canvas()
+        {
         }
 
         /// <summary>
-        /// Clears graphics object.
+        /// Getter method for the bitmap.
         /// </summary>
-        public void ClearPB() 
+        /// <returns>The bitmap being drawn to.</returns>
+        public Bitmap GetBitmap()
         {
-            g.Clear(Color.LightGray);
+            return myBitmap;
         }
 
+        /// <summary>
+        /// Getter for current position.
+        /// </summary>
+        /// <returns>Current position</returns>
+        public Point GetCurrentLocation()
+        {
+            return currentLocation;
+        }
+        public void SetCurrentPenColor(Color Colour)
+        {
+            currentPenColor = Colour;
+        }
     }
 }
