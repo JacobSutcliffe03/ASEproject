@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3yAqjTQXYxf7nz99a6/5gFoLPZ7lkdedsunr7sbqIdhpXyN4Nr35g7t+sLUE/qf7740Ssgr5A1XfajL3R9fjaQ==",
+  "dgSpecHash": "GA4UlFZ283ihEsrxdKi/aTnbk7VhD4rORqZile3p8znU95JMzjqTa13tEHG7PvliNyEDmLax67X3jfCrpB58YA==",
   "success": true,
   "projectFilePath": "C:\\Users\\jacob\\OneDrive\\Documents\\source\\repos\\ASEproject\\ASEproject\\ASETestProject\\ASETestProject.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\jacob\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\microsoft.testplatform.objectmodel\\17.5.0\\microsoft.testplatform.objectmodel.17.5.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\microsoft.testplatform.testhost\\17.5.0\\microsoft.testplatform.testhost.17.5.0.nupkg.sha512",
+    "C:\\Users\\jacob\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\mstest.testadapter\\2.2.10\\mstest.testadapter.2.2.10.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\mstest.testframework\\2.2.10\\mstest.testframework.2.2.10.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
@@ -20,6 +21,7 @@
     "C:\\Users\\jacob\\.nuget\\packages\\system.diagnostics.debug\\4.3.0\\system.diagnostics.debug.4.3.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\system.diagnostics.textwritertracelistener\\4.3.0\\system.diagnostics.textwritertracelistener.4.3.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\system.diagnostics.tracesource\\4.3.0\\system.diagnostics.tracesource.4.3.0.nupkg.sha512",
+    "C:\\Users\\jacob\\.nuget\\packages\\system.drawing.common\\8.0.3\\system.drawing.common.8.0.3.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\system.globalization\\4.3.0\\system.globalization.4.3.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\jacob\\.nuget\\packages\\system.reflection\\4.3.0\\system.reflection.4.3.0.nupkg.sha512",

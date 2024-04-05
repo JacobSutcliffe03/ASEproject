@@ -93,6 +93,7 @@ namespace aseTest
             Assert.IsTrue(executedCommands.Count > 0, "No commands were executed on run button click.");
         }
 
+
         /// <summary>
         /// Moveto command test.
         /// </summary>
@@ -190,7 +191,7 @@ namespace aseTest
                 Console.WriteLine(executedCommand);
             }
             // Check number of times command is run.
-            Assert.AreEqual(3, executedCommands.Count, "Expected 3 circles to be drawn.");
+            Assert.AreEqual(3, executedCommands.Count, "Expected result.");
             Assert.IsTrue(executedCommands.TrueForAll(command => command.Contains("Circle")), "Expected result.");
         }
 
@@ -229,7 +230,7 @@ namespace aseTest
             CommandParser parser2 = new CommandParser(command2, pen, canvas);
             // Compare variables change/
             Assert.IsTrue(CommandParser.variables.ContainsKey("size"), "Expected result.");
-            Assert.AreEqual(50, CommandParser.variables["size"], "Expected value");
+            Assert.AreEqual(50, CommandParser.variables["size"], "Expected value.");
         }
 
         /// <summary>
@@ -251,10 +252,13 @@ namespace aseTest
                 Console.WriteLine(executedCommand);
             }
             // Check if conditional command is run.
-            Assert.IsTrue(executedCommands.Any(command => command.Contains("Circle")), "Expected Result.");
+            Assert.IsTrue(executedCommands.Any(command => command.Contains("Circle")), "Expected result.");
         }
+
+
+
+
+
     }
 }
-
-
 
