@@ -232,5 +232,29 @@ namespace aseTest
             Assert.AreEqual(50, CommandParser.variables["size"], "Expected value");
         }
 
+        /// <summary>
+        /// if statement test.
+        /// </summary>
+        [TestMethod]
+        public void IfStatement_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string assignmentCommand = "let x equals 5";
+            CommandParser assignmentParser = new CommandParser(assignmentCommand, pen, canvas);
+            string ifCommand = "if x equals 5 circle 10";
+            CommandParser ifParser = new CommandParser(ifCommand, pen, canvas);
+            List<string> executedCommands = canvas.GetExecutedCommands();
+            Console.WriteLine("Executed Commands:");
+            foreach (string executedCommand in executedCommands)
+            {
+                Console.WriteLine(executedCommand);
+            }
+            // Check if conditional command is run.
+            Assert.IsTrue(executedCommands.Any(command => command.Contains("Circle")), "Expected Result.");
+        }
+    }
+}
+
 
 
