@@ -157,3 +157,18 @@ namespace aseTest
             Point currentLocation = canvas.GetCurrentLocation();
             Assert.AreEqual(new Point(0, 0), currentLocation, "Cursor Reset");
         }
+
+        /// <summary>
+        /// colour command test.
+        /// </summary>
+        [TestMethod]
+        public void ChangePenColor_Test()
+        {
+            Pen pen = new Pen(Color.Black, 1);
+            Canvas canvas = new Canvas(300, 300);
+            string command = "colour red";
+            CommandParser parser = new CommandParser(command, pen, canvas);
+            // Check pen's colour attribute after using command.
+            Color updatedPenColor = pen.Color;
+            Assert.AreEqual(Color.Red, updatedPenColor, "Pen color changed.");
+        }
