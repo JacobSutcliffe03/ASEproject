@@ -130,3 +130,93 @@ namespace ASEproject
             {
                 IfCommand(elems, pen, canvas);
             }
+
+            /// <summary>
+            /// Handles the 'repeat' command to loop the shapes multiple times on the canvas.
+            /// </summary>
+            /// <param name="elems">The array of command elems.</param>
+            /// <param name="pen">The Pen object used for drawing.</param>
+            /// <param name="canvas">The canvas where the shapes are drawn.</param>
+            private void LoopCommand(string[] elems, Pen pen, Canvas canvas)
+            {
+                // Checking for valid amount of elems in command
+                if (elems.Length >= 4 && (elems[2].ToLower() == "circle" || elems[2].ToLower() == "rectangle" || elems[2].ToLower() == "triangle"))
+                {
+                    int size1 = ifVariableOrValue(elems[3]);
+
+                    if (int.TryParse(elems[1], out int repeatCount))
+                    {
+                        //repeats the loop -example - repeat 5 (repeats it 5 times)
+                        for (int i = 0; i < repeatCount; i++)
+                        {
+                            // changes the position on the canvas to show its repeating
+                            int newX = canvas.GetCurrentLocation().X + i * 5;
+                            int newY = canvas.GetCurrentLocation().Y + i * 5;
+                            canvas.MoveTo(newX, newY);
+
+                            if (elems[2].ToLower() == "circle")
+                            {
+                                Shape circle = new Circle(pen.Color, newX, newY, size1);
+                                canvas.DrawShape(circle);
+                            }
+                            else if (elems[2].ToLower() == "rectangle")
+                            {
+                                if (elems.Length >= 5)
+                                {
+                                    int size2 = ifVariableOrValue(elems[4]);
+                                    Shape rectangle = new Rectangle(pen.Color, newX, newY, size1, size2);
+                                    canvas.DrawShape(rectangle);
+                                }
+                            }
+                            else if (elems[2].ToLower() == "triangle" && elems.Length >= 5)
+                            {
+                                int size2 = ifVariableOrValue(elems[4]);
+                                Shape triangle = new Triangle(pen.Color, newX, newY, size1);
+                                canvas.DrawShape(triangle);
+                            }
+                        }
+                    }
+                    else if (variables.ContainsKey(elems[1]))
+                    {
+                        // If the loop count is a variable eg. repeat x amount of times
+                        int loopCount = variables[elems[1]];
+                        for (int i = 0; i < loopCount; i++)
+                        {
+                            // changes the position on the canvas to show its repeating
+                            int newX = canvas.GetCurrentLocation().X + i * 5;
+                            int newY = canvas.GetCurrentLocation().Y + i * 5;
+                            canvas.MoveTo(newX, newY);
+
+                            if (elems[2].ToLower() == "circle")
+                            {
+                                Shape circle = new Circle(pen.Color, newX, newY, size1);
+                                canvas.DrawShape(circle);
+                            }
+                            else if (elems[2].ToLower() == "rectangle")
+                            {
+                                if (elems.Length >= 5)
+                                {
+                                    int size2 = ifVariableOrValue(elems[4]);
+                                    Shape rectangle = new Rectangle(pen.Color, newX, newY, size1, size2);
+                                    canvas.DrawShape(rectangle);
+                                }
+                            }
+                            else if (elems[2].ToLower() == "triangle" && elems.Length >= 5)
+                            {
+                                int size2 = ifVariableOrValue(elems[4]);
+                                Shape triangle = new Triangle(pen.Color, newX, newY, size1);
+                                canvas.DrawShape(triangle);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid 'repeat' command syntax. Loop count must be a variable or a numerical value.");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Invalid 'repeat' command syntax.");
+                    // syntaxes for incorrect commands
+                }
+            }
