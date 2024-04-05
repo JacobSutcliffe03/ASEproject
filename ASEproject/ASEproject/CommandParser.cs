@@ -332,3 +332,38 @@ namespace ASEproject
 
 
             }
+            /// <summary>
+            /// Handles the if command to conditionally execute a command
+            /// </summary>
+            /// <param name="parts">The array of command parts.</param>
+            /// <param name="pen">The Pen object used for drawing.</param>
+            /// <param name="canvas">The canvas where the shapes are drawn.</param>
+            private void IfCommand(string[] parts, Pen pen, Canvas canvas)
+            {
+                //combines the condition back into a single string to be evaluated
+                string condition = string.Join(" ", parts.Skip(1).TakeWhile(p => p != "circle" && p != "rectangle" && p != "triangle"));
+                bool conditionMet = false;
+
+                if (condition.Contains("equals"))
+                {
+                    string[] conditionParts = condition.Split(new string[] { "equals" }, StringSplitOptions.None);
+
+                    string variableName = conditionParts[0].Trim();
+                    string stringValue = conditionParts[1].Trim();
+
+                    //checks wether or not the variable exists in the dictionary and its value mtaches with the condition
+                    if (variables.TryGetValue(variableName, out int variableValue) && variableValue == int.Parse(stringValue))
+                    {
+                        conditionMet = true;
+                    }
+
+                }
+                if (conditionMet)
+                {
+                    //Extracts the command after the condition is done
+                    string commandToExecute = string.Join(" ", parts.SkipWhile(p => p != "circle" && p != "rectangle" && p != "triangle"));
+                    new CommandParser(commandToExecute, pen, canvas);
+                }
+            }
+        }
+    }
