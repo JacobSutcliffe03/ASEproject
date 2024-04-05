@@ -110,3 +110,19 @@ namespace aseTest
             //Compare cursor position to moveto parameters given.
             Assert.AreEqual(new Point(x, y), currentLocation, "Cursor should move to the specified location");
         }
+
+        /// <summary>
+        /// Drawto command test.
+        /// </summary>
+        [TestMethod]
+        public void DrawTo_Test()
+        {
+            var canvas = new Canvas(300, 300);
+            int startX = 10, startY = 10;
+            int endX = 50, endY = 50;
+            canvas.MoveTo(startX, startY);
+            canvas.DrawTo(endX, endY);
+            //Compare cursor position to drawto parameters given.
+            var currentLocation = canvas.GetCurrentLocation();
+            Assert.AreEqual(new Point(endX, endY), currentLocation, "Cursor should move to the specified location");
+        }
