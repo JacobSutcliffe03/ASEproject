@@ -126,3 +126,7 @@ namespace ASEproject
                 LoopCommand(elems, pen, canvas);
 
             }
+            else if (elems[0] == "if")
+            {
+                IfCommand(elems, pen, canvas);
+            }
