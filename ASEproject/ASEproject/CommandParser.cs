@@ -267,3 +267,33 @@ namespace ASEproject
 
                 }
             }
+
+            /// <summary>
+            /// Changes pens colour.
+            /// </summary>
+            /// <param name="elems">The array of command elems.</param>
+            /// <param name="pen">The Pen object whose color will be set.</param>
+            private void ColorCommand(string[] elems, Pen pen)
+            {
+                if (elems.Length > 1)
+                {
+                    switch (elems[1].ToLower())
+                    {
+                        case "black":
+                            pen.Color = Color.Black;
+                            break;
+                        case "blue":
+                            pen.Color = Color.Blue;
+                            break;
+                        case "green":
+                            pen.Color = Color.Green;
+                            break;
+                        case "red":
+                            pen.Color = Color.Red;
+                            break;
+                        default:
+                            Console.WriteLine($"Invalid color: {elems[1]}");
+                            break;
+                    }
+
+                }
