@@ -104,3 +104,18 @@ namespace ASEproject
                 ColorCommand(elems, pen);
             }
             //Change Pen colour
+            else if (elems[0] == "let")
+            {
+                Console.WriteLine("let called");
+                string name = elems[1];
+                string expression = string.Join(" ", elems.Skip(3));
+
+                if (TryEvaluateExpression(expression, out int value))
+                {
+                    variables[name] = value;
+                }
+                else
+                {
+                    Console.WriteLine($"Error evaluating expression for variable {name}");
+                }
+            }
