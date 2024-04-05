@@ -99,3 +99,8 @@ namespace ASEproject
                 canvas.DrawTo(x, y);
             }
             //draws a line to a point.
+            else if (elems[0] == "colour")
+            {
+                ColorCommand(elems, pen);
+            }
+            //Change Pen colour
